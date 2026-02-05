@@ -1,170 +1,191 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Be My Valentine</title>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine</title>
+
+  <style>
     body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(135deg, #ff9ecb, #ffc1e3);
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      overflow: hidden;
+      text-align: center;
+      color: white;
     }
 
-    .card {
-        background: white;
-        color: black;
-        padding: 30px;
-        border-radius: 20px;
-        width: 320px;
-        text-align: center;
-        position: relative;
-        z-index: 2;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    .container {
+      position: relative;
+      z-index: 2;
+      margin-top: 40px;
+      padding: 20px;
     }
 
-    .hidden {
-        display: none;
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
     }
 
-    .pet {
-        width: 130px;
-        margin: 10px 0;
-        animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
+    .dog-img {
+      width: 220px;
+      max-width: 80%;
+      border-radius: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
     .buttons {
-        position: relative;
-        height: 100px;
-        margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
     }
 
     button {
-        padding: 10px 20px;
-        font-size: 18px;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        position: absolute;
+      padding: 14px 28px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+      min-width: 100px;
     }
 
     #yesBtn {
-        background: #ff4d88;
-        color: white;
-        left: 40px;
-        top: 20px;
+      background: #ff4d6d;
+      color: white;
     }
 
     #noBtn {
-        background: #ddd;
-        left: 180px;
-        top: 20px;
+      background: white;
+      color: #ff4d6d;
+      position: relative;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    /* Pantalla final */
+    .thanks-screen {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #ff4d6d, #ff9a9e);
+      z-index: 3;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .thanks-screen h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .thanks-screen p {
+      font-size: 1.3em;
+      max-width: 300px;
+    }
+
+    .teddy {
+      width: 140px;
+      margin-top: 20px;
+      animation: float 3s infinite ease-in-out;
     }
 
     /* Corazones */
     .heart {
-        position: absolute;
-        bottom: -50px;
-        font-size: 20px;
-        animation: floatUp linear infinite;
-        opacity: 0.7;
+      position: fixed;
+      bottom: -50px;
+      font-size: 24px;
+      animation: rise 6s linear infinite;
+      z-index: 1;
     }
 
-    @keyframes floatUp {
-        from {
-            transform: translateY(0);
-            opacity: 0.8;
-        }
-        to {
-            transform: translateY(-110vh);
-            opacity: 0;
-        }
+    @keyframes rise {
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
     }
-</style>
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+  </style>
 </head>
 <body>
 
-<!-- Pantalla 1 -->
-<div class="card" id="screen1">
-    <h1>Be My Valentine</h1>
-
-    <!-- Perrito con corazón -->
-    <img class="pet" src="https://cdn-icons-png.flaticon.com/512/194/194279.png">
-
-    <p>Will you be my Valentine?</p>
-
-    <div class="buttons">
-        <button id="yesBtn">Yes</button>
-        <button id="noBtn">No</button>
-    </div>
-</div>
-
-<!-- Pantalla 2 -->
-<div class="card hidden" id="screen2">
-    <h1>Thanks! ❤️</h1>
-    <img class="pet" src="https://cdn-icons-png.flaticon.com/512/194/194279.png">
-    <p>You made me very happy 🐶💗</p>
-</div>
-
 <!-- Música -->
 <audio id="music" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8d5d2e7e0.mp3?filename=romantic-love-11794.mp3" type="audio/mp3">
+  <source src="music.mp3" type="audio/mpeg">
 </audio>
 
+<div class="container" id="mainScreen">
+  <h1>Will you be my Valentine?</h1>
+
+  <img src="perrito.png" alt="Perrito con corazón" class="dog-img">
+
+  <div class="buttons">
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+  </div>
+</div>
+
+<!-- Pantalla final -->
+<div class="thanks-screen" id="thanksScreen">
+  <h1>Thank you! 💖</h1>
+  <p>You just made me the happiest person today.</p>
+  <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" class="teddy">
+</div>
+
 <script>
-const noBtn = document.getElementById("noBtn");
-const yesBtn = document.getElementById("yesBtn");
-const screen1 = document.getElementById("screen1");
-const screen2 = document.getElementById("screen2");
-const music = document.getElementById("music");
+  const yesBtn = document.getElementById("yesBtn");
+  const noBtn = document.getElementById("noBtn");
+  const thanksScreen = document.getElementById("thanksScreen");
+  const mainScreen = document.getElementById("mainScreen");
+  const music = document.getElementById("music");
 
-let yesSize = 18;
-
-// Mover botón No
-noBtn.addEventListener("mouseover", () => {
-    const x = Math.random() * 200;
-    const y = Math.random() * 60;
+  // Botón No escapa (funciona también en celular)
+  function moveNoButton() {
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
+    noBtn.style.position = "absolute";
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
+  }
 
-    yesSize += 6;
-    yesBtn.style.fontSize = yesSize + "px";
-});
+  noBtn.addEventListener("mouseover", moveNoButton);
+  noBtn.addEventListener("touchstart", moveNoButton);
 
-// Cuando se presiona Yes
-yesBtn.addEventListener("click", () => {
-    screen1.classList.add("hidden");
-    screen2.classList.remove("hidden");
+  // Acción Yes
+  yesBtn.addEventListener("click", () => {
+    mainScreen.style.display = "none";
+    thanksScreen.style.display = "flex";
     music.play();
-});
+  });
 
-// Corazones flotando
-function createHeart() {
+  // Corazones flotando
+  function createHeart() {
     const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerText = "💗";
+    heart.className = "heart";
+    heart.innerText = "💖";
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
-    heart.style.fontSize = (15 + Math.random() * 20) + "px";
-
+    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
     document.body.appendChild(heart);
 
     setTimeout(() => {
-        heart.remove();
+      heart.remove();
     }, 6000);
-}
+  }
 
-setInterval(createHeart, 300);
+  setInterval(createHeart, 300);
 </script>
 
 </body>
