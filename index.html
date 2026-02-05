@@ -31,8 +31,8 @@
         display: none;
     }
 
-    .bear {
-        width: 120px;
+    .pet {
+        width: 130px;
         margin: 10px 0;
         animation: bounce 2s infinite;
     }
@@ -44,7 +44,8 @@
 
     .buttons {
         position: relative;
-        height: 80px;
+        height: 100px;
+        margin-top: 15px;
     }
 
     button {
@@ -54,17 +55,20 @@
         border-radius: 10px;
         cursor: pointer;
         transition: all 0.2s ease;
+        position: absolute;
     }
 
     #yesBtn {
         background: #ff4d88;
         color: white;
+        left: 40px;
+        top: 20px;
     }
 
     #noBtn {
         background: #ddd;
-        position: absolute;
-        left: 150px;
+        left: 180px;
+        top: 20px;
     }
 
     /* Corazones */
@@ -93,7 +97,10 @@
 <!-- Pantalla 1 -->
 <div class="card" id="screen1">
     <h1>Be My Valentine</h1>
-    <img class="bear" src="https://cdn-icons-png.flaticon.com/512/616/616408.png">
+
+    <!-- Perrito con corazón -->
+    <img class="pet" src="https://cdn-icons-png.flaticon.com/512/194/194279.png">
+
     <p>Will you be my Valentine?</p>
 
     <div class="buttons">
@@ -105,8 +112,8 @@
 <!-- Pantalla 2 -->
 <div class="card hidden" id="screen2">
     <h1>Thanks! ❤️</h1>
-    <img class="bear" src="https://cdn-icons-png.flaticon.com/512/616/616408.png">
-    <p>You made me very happy 🧸💗</p>
+    <img class="pet" src="https://cdn-icons-png.flaticon.com/512/194/194279.png">
+    <p>You made me very happy 🐶💗</p>
 </div>
 
 <!-- Música -->
@@ -126,7 +133,7 @@ let yesSize = 18;
 // Mover botón No
 noBtn.addEventListener("mouseover", () => {
     const x = Math.random() * 200;
-    const y = Math.random() * 40;
+    const y = Math.random() * 60;
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 
